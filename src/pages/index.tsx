@@ -4,10 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/styles';
-// import * as PropTypes from 'prop-types';
-// import loadable from '@loadable/component';
+import Hidden from '@material-ui/core/Hidden';
 
 type Props = {};
 
@@ -28,11 +27,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Index: React.FC<Props> = () => {
   const canvasRef = useRef(null);
+  const saveCanvasRef = useRef(null);
   const classes = useStyles();
   const [text, setText] = useState<string>('1234');
 
-  const getContext = (): CanvasRenderingContext2D => {
-    const canvas: any = canvasRef.current;
+  const getContext = (ref: MutableRefObject<any>): CanvasRenderingContext2D => {
+    const canvas: any = ref.current;
     return canvas.getContext('2d');
   };
 
@@ -41,17 +41,41 @@ const Index: React.FC<Props> = () => {
   };
 
   useEffect(() => {
-    const ctx: CanvasRenderingContext2D = getContext();
-    const { current } = canvasRef;
+    const canvas = canvasRef.current;
+    const ctx: CanvasRenderingContext2D = getContext(canvasRef);
     ctx.beginPath();
+    // TODO: selecting fonts
     ctx.font = '100px Arial';
+    ctx.lineJoin = 'round';
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.clearRect(0, 0, current.width, current.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(1, 0, -0.18, 1, 0, 0);
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 0;
     ctx.fillText(text, 70 + 4, 100 + 4);
   }, [text]);
+
+  const saveImage = () => {
+    const canvas: any = saveCanvasRef.current;
+    const ctx: CanvasRenderingContext2D = getContext(saveCanvasRef);
+    // TODO: selecting fonts
+    ctx.font = '1200px Arial';
+    ctx.lineJoin = 'round';
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.setTransform(1, 0, -0.1, 1, 0, 0);
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 0;
+    ctx.fillText(text, 324 + 4, 1500 + 4);
+    const url = canvas.toDataURL('image/png', 1);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'number.png');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <Container maxWidth="lg">
@@ -73,7 +97,7 @@ const Index: React.FC<Props> = () => {
           defaultValue={1234}
           onInput={onInput}
         />
-        <Button type="button" color="primary" variant="contained">
+        <Button type="button" color="primary" variant="contained" onClick={saveImage}>
           <Typography variant="button">画像を保存する</Typography>
         </Button>
       </Box>
@@ -88,6 +112,9 @@ const Index: React.FC<Props> = () => {
           フォントは現在フリーのフォントを使っています。今後気が向いたら増やします。
         </Box>
       </Typography>
+      <Hidden>
+        <canvas width="2893px" height="4092px" ref={saveCanvasRef} />
+      </Hidden>
     </Container>
   );
 };
