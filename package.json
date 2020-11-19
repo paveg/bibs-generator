@@ -5,11 +5,47 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prettier": "pretty-quick --staged",
+    "lint": "eslint src/** --ext .ts,.tsx",
+    "lint:fix": "eslint src/** --ext .ts,.tsx --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "pre-push": "npm run lint"
+    }
   },
   "dependencies": {
+    "@loadable/component": "^5.14.1",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.10.0",
     "next": "10.0.2",
+    "prop-types": "^15.7.2",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "styled-components": "^5.2.1",
+    "styled-reset": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.7",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "@types/styled-components": "^5.1.4",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.3.0",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0",
+    "typescript": "^4.0.5"
   }
 }
