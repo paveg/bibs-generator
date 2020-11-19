@@ -112,9 +112,9 @@ const Index: React.FC<Props> = () => {
           フォントは現在フリーのフォントを使っています。今後気が向いたら増やします。
         </Box>
       </Typography>
-      <Hidden>
-        <canvas width="2893px" height="4092px" ref={saveCanvasRef} />
-      </Hidden>
+      <Box>
+        <canvas hidden width="2893px" height="4092px" ref={saveCanvasRef} />
+      </Box>
     </Container>
   );
 };
