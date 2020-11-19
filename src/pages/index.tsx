@@ -1,17 +1,34 @@
 import * as React from 'react';
-import { Container } from '@material-ui/core';
+import { Container, Theme } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useEffect, useRef, useState } from 'react';
+import { createStyles, makeStyles } from '@material-ui/styles';
 // import * as PropTypes from 'prop-types';
 // import loadable from '@loadable/component';
 
 type Props = {};
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: 150,
+      },
+      '& .MuiButton-root': {
+        margin: theme.spacing(1),
+        width: 150,
+      },
+    },
+  }),
+);
+
 const Index: React.FC<Props> = () => {
-  const paletteRef = useRef(null);
   const canvasRef = useRef(null);
+  const classes = useStyles();
   const [text, setText] = useState<string>('1234');
 
   const getContext = (): CanvasRenderingContext2D => {
@@ -43,11 +60,10 @@ const Index: React.FC<Props> = () => {
           Off-Road Number Generator β
         </Box>
       </Typography>
-      <div ref={paletteRef}>
-        <canvas width={400} height={150} ref={canvasRef} />
-      </div>
-      <br />
-      <Box display="flex" justifyContent="center">
+      <Box textAlign="center">
+        <canvas width={800} height={150} ref={canvasRef} />
+      </Box>
+      <Box display="flex" justifyContent="center" className={classes.root}>
         <TextField
           type="text"
           id="text-box"
@@ -57,8 +73,8 @@ const Index: React.FC<Props> = () => {
           defaultValue={1234}
           onInput={onInput}
         />
-        <Button type="button" color="primary">
-          画像を保存する
+        <Button type="button" color="primary" variant="contained">
+          <Typography variant="button">画像を保存する</Typography>
         </Button>
       </Box>
       <Typography component="div" paragraph variant="h5">
