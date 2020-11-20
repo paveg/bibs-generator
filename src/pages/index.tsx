@@ -3,6 +3,7 @@ import loadable from '@loadable/component';
 import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 
 const BibsGenerator = loadable(() => import('../components/bibs_generator'));
 
@@ -29,6 +30,14 @@ const Index: React.FC<Props> = () => (
         <Typography variant="caption">
           ※1: ライト付きED車のフロントマスク上にちょうど収まるサイズ
         </Typography>
+      </Box>
+    </Typography>
+    <Typography component="div" variant="body1" paragraph>
+      <Box textAlign="center">
+        © FUNAI RACING2020 | powered by{' '}
+        <Link href="http://funairacing.com" component="a" variant="body1">
+          FUNAI RACING
+        </Link>
       </Box>
     </Typography>
   </Container>
