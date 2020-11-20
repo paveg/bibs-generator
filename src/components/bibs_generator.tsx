@@ -111,17 +111,28 @@ const BibsGenerator: React.FC = () => {
   const menuItems = Object.keys(saveInfo).map((key) => {
     const displayValue = saveInfo[key].text;
 
-    return <MenuItem value={key}>{displayValue}</MenuItem>;
+    return (
+      <MenuItem key={key} value={key}>
+        {displayValue}
+      </MenuItem>
+    );
   });
 
   return (
     <>
-      <Box textAlign="center">
+      <Box key="canvas-box" textAlign="center">
         <canvas width={400} height={150} ref={canvasRef} />
         <Divider />
       </Box>
-      <Box display="flex" justifyContent="center" className={classes.root} m={2}>
+      <Box
+        key="color-picker-box"
+        display="flex"
+        justifyContent="center"
+        className={classes.root}
+        m={2}
+      >
         <ColorPicker
+          key="font-color-picker"
           name="font-color"
           defaultValue={fontColor}
           floatingLabelText="文字色"
@@ -131,6 +142,7 @@ const BibsGenerator: React.FC = () => {
           }}
         />
         <ColorPicker
+          key="background-color-picker"
           name="background-color"
           defaultValue={backgroundColor}
           floatingLabelText="背景色"
@@ -140,7 +152,7 @@ const BibsGenerator: React.FC = () => {
           }}
         />
       </Box>
-      <Box display="flex" justifyContent="center" className={classes.root} m={1}>
+      <Box key="input-box" display="flex" justifyContent="center" className={classes.root} m={1}>
         <Select labelId="font-label" id="select-font" value={font} onChange={handleChange}>
           {menuItems}
         </Select>
@@ -157,7 +169,7 @@ const BibsGenerator: React.FC = () => {
           <Typography variant="button">画像を保存する</Typography>
         </Button>
       </Box>
-      <Box>
+      <Box key="hide-canvas-box">
         <canvas hidden width="2893px" height="4092px" ref={saveCanvasRef} />
       </Box>
     </>
