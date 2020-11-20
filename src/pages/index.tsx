@@ -39,7 +39,7 @@ const getContext = (ref: MutableRefObject<any>): CanvasRenderingContext2D => {
 };
 
 const Index: React.FC<Props> = () => {
-  const [font, setFont] = useState<string>('erectricboots');
+  const [font, setFont] = useState<string>('electricboots');
   const canvasRef = useRef(null);
 
   const saveCanvasRef = useRef(null);
@@ -72,7 +72,7 @@ const Index: React.FC<Props> = () => {
   const saveImage = () => {
     const canvas: any = saveCanvasRef.current;
     const ctx: CanvasRenderingContext2D = getContext(saveCanvasRef);
-    ctx.font = '1760px erectricboots';
+    ctx.font = `1760px ${font}`;
     ctx.lineJoin = 'round';
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -103,7 +103,7 @@ const Index: React.FC<Props> = () => {
       </Box>
       <Box display="flex" justifyContent="center" className={classes.root}>
         <Select labelId="font-label" id="select-font" value={font} onChange={handleChange}>
-          <MenuItem value="erectricboots">erectricboots</MenuItem>
+          <MenuItem value="electricboots">electricboots</MenuItem>
           <MenuItem value="Arial">Arial</MenuItem>
         </Select>
         <TextField

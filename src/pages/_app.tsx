@@ -40,8 +40,8 @@ const GlobalStyle = createGlobalStyle`
     right: 0;
   }
   @font-face {
-   font-family: 'erectricboots';
-    src: local('erectricboots'), url(./fonts/ELECTRICBOOTS.ttf) format('truetype');
+   font-family: 'electricboots';
+    src: local('electricboots'), url(./fonts/ELECTRICBOOTS.ttf) format('truetype');
   }
 `;
 
