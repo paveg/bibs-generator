@@ -6,9 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "prettier": "pretty-quick --staged",
-    "lint": "eslint src/** --ext .ts,.tsx",
-    "lint:fix": "eslint src/** --ext .ts,.tsx --fix"
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "husky": {
     "hooks": {

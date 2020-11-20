@@ -61,19 +61,21 @@ const App = ({ Component, pageProps }: AppProps) => {
           name="viewport"
           content="width=device-width,initial-scale=1.0,viewport-fit=cover"
         />
+        <meta name="og:image" content="./logo.png" />
         <meta name="og:title" content="Off-Road Number Generator" />
         <meta name="og:url" content="https://funairacing.github.io/Number-Generator/" />
         <meta
           name="Description"
           content="オフロードバイクのゼッケン用のナンバーを作成するツールです。"
         />
+        <meta name="twitter:card" content="summary" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap"
           rel="preload"
           as="style"
         />
-        <title key="title">Off-Road Number Generator beta</title>
+        <title key="title">Off-Road Number Generator γ</title>
       </Head>
 
       <MuiThemeProvider theme={theme}>
