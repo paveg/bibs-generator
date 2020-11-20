@@ -39,6 +39,10 @@ const GlobalStyle = createGlobalStyle`
     left: 0;
     right: 0;
   }
+  @font-face {
+   font-family: 'erectricboots';
+    src: local('erectricboots'), url(./fonts/ELECTRICBOOTS.ttf) format('truetype');
+  }
 `;
 
 const App = ({ Component, pageProps }: AppProps) => {
