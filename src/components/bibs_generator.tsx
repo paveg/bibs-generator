@@ -9,14 +9,29 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import ColorPicker from 'material-ui-color-picker';
+import InputColor, { Color } from 'react-input-color';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) => {
   const style = createStyles({
-    root: {
-      '& .MuiButton-root, .MuiFormControl-root, .MuiSelect-root, .MuiFormControl-root': {
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 100,
+    },
+    picker: {
+      '& .MuiFormControl-root': {
         margin: theme.spacing(1),
-        width: 120,
+        textAlign: 'center',
+      },
+      '& .MuiFormControl-root > span': {
+        width: 96,
+        height: 36,
+      },
+      '& .MuiFormLabel-root': {
+        padding: theme.spacing(1),
       },
     },
   });
@@ -49,11 +64,30 @@ const getContext = (ref: MutableRefObject<any>): CanvasRenderingContext2D => {
 
 const BibsGenerator: React.FC = () => {
   const classes = useStyles();
-
   const [font, setFont] = useState<string>('electricboots');
   const [text, setText] = useState<string>('');
-  const [fontColor, setFontColor] = useState<string>('#252525');
-  const [backgroundColor, setBackgroundColor] = useState<string>('#ffffff');
+  const [fontColor, setFontColor] = useState<Color>({
+    a: 0,
+    b: 0,
+    g: 0,
+    h: 0,
+    hex: '',
+    r: 0,
+    rgba: '',
+    s: 0,
+    v: 0,
+  });
+  const [backgroundColor, setBackgroundColor] = useState<Color>({
+    a: 0,
+    b: 0,
+    g: 0,
+    h: 0,
+    hex: '',
+    r: 0,
+    rgba: '',
+    s: 0,
+    v: 0,
+  });
   const canvasRef = useRef(null);
   const saveCanvasRef = useRef(null);
 
@@ -62,10 +96,10 @@ const BibsGenerator: React.FC = () => {
     ctx.lineJoin = 'round';
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = backgroundColor;
+    ctx.fillStyle = backgroundColor.hex;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(1, 0, -0.18, 1, 0, 0);
-    ctx.fillStyle = fontColor;
+    ctx.fillStyle = fontColor.hex;
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 0;
     return ctx;
@@ -124,48 +158,53 @@ const BibsGenerator: React.FC = () => {
         <canvas width={400} height={150} ref={canvasRef} />
         <Divider />
       </Box>
-      <Box
-        key="color-picker-box"
-        display="flex"
-        justifyContent="center"
-        className={classes.root}
-        m={2}
-      >
-        <ColorPicker
-          key="font-color-picker"
-          name="font-color"
-          defaultValue={fontColor}
-          floatingLabelText="文字色"
-          value={fontColor}
-          onChange={(color) => {
-            setFontColor(color);
-          }}
-        />
-        <ColorPicker
-          key="background-color-picker"
-          name="background-color"
-          defaultValue={backgroundColor}
-          floatingLabelText="背景色"
-          value={backgroundColor}
-          onChange={(color) => {
-            setBackgroundColor(color);
-          }}
-        />
-      </Box>
-      <Box key="input-box" display="flex" justifyContent="center" className={classes.root} m={1}>
-        <Select labelId="font-label" id="select-font" value={font} onChange={handleChange}>
-          {menuItems}
-        </Select>
-        <TextField
-          type="text"
-          id="text-box"
-          variant="outlined"
-          size="small"
-          required
-          placeholder="1234"
-          onInput={onInput}
-        />
-        <Button size="small" type="button" color="primary" variant="contained" onClick={saveImage}>
+      <Grid container spacing={2} justify="center" alignItems="flex-end">
+        <Grid item>
+          <Box key="color-picker-box" className={classes.picker}>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">文字色</FormLabel>
+              <InputColor
+                placement="left"
+                key="font-color-picker"
+                initialValue="#252525"
+                onChange={setFontColor}
+              />
+            </FormControl>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">背景色</FormLabel>
+              <InputColor
+                placement="right"
+                key="background-color-picker"
+                initialValue="#ffffff"
+                onChange={setBackgroundColor}
+              />
+            </FormControl>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box key="input-box">
+            <FormControl variant="filled" className={classes.formControl}>
+              <InputLabel id="select-font">Font</InputLabel>
+              <Select labelId="font-label" id="select-font" value={font} onChange={handleChange}>
+                {menuItems}
+              </Select>
+            </FormControl>
+            <FormControl variant="filled" className={classes.formControl}>
+              <TextField
+                type="text"
+                label="Number"
+                id="input-number"
+                variant="filled"
+                required
+                placeholder="1234"
+                onInput={onInput}
+              />
+            </FormControl>
+          </Box>
+        </Grid>
+      </Grid>
+      <Box display="flex" justifyContent="center" m={3}>
+        <Button type="button" color="primary" variant="contained" onClick={saveImage}>
           <Typography variant="button">画像を保存する</Typography>
         </Button>
       </Box>

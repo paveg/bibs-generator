@@ -17,8 +17,8 @@ const Index: React.FC<Props> = () => (
       </Box>
     </Typography>
     <BibsGenerator />
-    <Typography component="div" paragraph variant="h5">
-      <Box textAlign="center" fontWeight={400}>
+    <Typography component="div" paragraph variant="body1">
+      <Box textAlign="center" fontWeight={500}>
         オフロードバイクのゼッケン用のナンバーを作成するツールです。
         <br />
         A4に印刷しておよそ縦80~90mmになるようにしています（※1）。
