@@ -120,7 +120,7 @@ const BibsGenerator: React.FC = () => {
 
     ctx.font = `100px ${font}`;
     configureContext(ctx, canvasRef);
-    ctx.fillText(text, 40, 110);
+    ctx.fillText(text, 35, 110);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
   }, [text, font, fontColor, backgroundColor]);
 
@@ -155,7 +155,7 @@ const BibsGenerator: React.FC = () => {
   return (
     <>
       <Box key="canvas-box" textAlign="center">
-        <canvas width={350} height={150} ref={canvasRef} />
+        <canvas width={330} height={150} ref={canvasRef} />
         <Divider />
       </Box>
       <Grid container spacing={2} justify="center" alignItems="flex-end">
