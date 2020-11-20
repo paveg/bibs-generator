@@ -15,15 +15,15 @@ const useStyles = makeStyles((theme: Theme) => {
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
-        width: 150,
+        width: 120,
       },
       '& .MuiButton-root': {
         margin: theme.spacing(1),
-        width: 150,
+        width: 120,
       },
       '& .MuiSelect-root': {
         margin: theme.spacing(1),
-        width: 150,
+        width: 120,
       },
     },
   });
@@ -122,19 +122,25 @@ const BibsGenerator: React.FC = () => {
         <Divider />
       </Box>
       <Box display="flex" justifyContent="center" className={classes.root}>
-        <Select labelId="font-label" id="select-font" value={font} onChange={handleChange}>
+        <Select
+          size="small"
+          labelId="font-label"
+          id="select-font"
+          value={font}
+          onChange={handleChange}
+        >
           {menuItems}
         </Select>
         <TextField
           type="text"
           id="text-box"
           variant="outlined"
-          size="medium"
+          size="small"
           required
           placeholder="1234"
           onInput={onInput}
         />
-        <Button type="button" color="primary" variant="contained" onClick={saveImage}>
+        <Button size="small" type="button" color="primary" variant="contained" onClick={saveImage}>
           <Typography variant="button">画像を保存する</Typography>
         </Button>
       </Box>
