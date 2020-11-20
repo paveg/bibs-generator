@@ -151,6 +151,3 @@ dist
 
 # export directory
 out/
-
-public/sitemap.xml
-public/robots.txt

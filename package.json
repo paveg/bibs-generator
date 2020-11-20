@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
+      "pre-commit": "pretty-quick --staged && yarn run postbuild && git add public/sitemap.xml public/robots.txt",
       "pre-push": "npm run lint"
     }
   },
