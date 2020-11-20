@@ -31,6 +31,24 @@ const useStyles = makeStyles((theme: Theme) => {
   return style;
 });
 
+type Info = {
+  [key: string]: {
+    pixel: string;
+    text: string;
+  };
+};
+
+const saveInfo: Info = {
+  electricboots: {
+    pixel: '1760px',
+    text: 'ELECTRICBOOTS',
+  },
+  arial: {
+    pixel: '1600px',
+    text: 'Arial',
+  },
+};
+
 const getContext = (ref: MutableRefObject<any>): CanvasRenderingContext2D => {
   const ctx: CanvasRenderingContext2D = ref.current.getContext('2d');
   return ctx;
@@ -57,6 +75,7 @@ const BibsGenerator: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx: CanvasRenderingContext2D = getContext(canvasRef);
+
     ctx.font = `100px ${font}`;
     ctx.lineJoin = 'round';
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -70,7 +89,9 @@ const BibsGenerator: React.FC = () => {
   const saveImage = () => {
     const canvas: any = saveCanvasRef.current;
     const ctx: CanvasRenderingContext2D = getContext(saveCanvasRef);
-    ctx.font = `1760px ${font}`;
+    const info = saveInfo[font];
+
+    ctx.font = `${info.pixel} ${font}`;
     ctx.lineJoin = 'round';
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -88,6 +109,12 @@ const BibsGenerator: React.FC = () => {
     document.body.removeChild(link);
   };
 
+  const menuItems = Object.keys(saveInfo).map((key) => {
+    const displayValue = saveInfo[key].text;
+
+    return <MenuItem value={key}>{displayValue}</MenuItem>;
+  });
+
   return (
     <>
       <Box textAlign="center">
@@ -96,8 +123,7 @@ const BibsGenerator: React.FC = () => {
       </Box>
       <Box display="flex" justifyContent="center" className={classes.root}>
         <Select labelId="font-label" id="select-font" value={font} onChange={handleChange}>
-          <MenuItem value="electricboots">electricboots</MenuItem>
-          <MenuItem value="Arial">Arial</MenuItem>
+          {menuItems}
         </Select>
         <TextField
           type="text"
