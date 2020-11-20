@@ -61,9 +61,11 @@ const App = ({ Component, pageProps }: AppProps) => {
           name="viewport"
           content="width=device-width,initial-scale=1.0,viewport-fit=cover"
         />
-        <meta name="og:image" content="./logo.png" />
-        <meta name="og:title" content="Off-Road Number Generator" />
-        <meta name="og:url" content="https://funairacing.github.io/Number-Generator/" />
+        <meta property="og:image" content="./logo.png" />
+        <meta property="og:title" content="Off-Road Number Generator" />
+        <meta property="og:url" content="https://funairacing.github.io/Number-Generator/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Off-Road Number Generator" />
         <meta
           name="Description"
           content="オフロードバイクのゼッケン用のナンバーを作成するツールです。"
