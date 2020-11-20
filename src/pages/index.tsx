@@ -12,7 +12,7 @@ const Index: React.FC<Props> = () => (
   <Container maxWidth="lg">
     <Typography component="div" variant="h2">
       <Box textAlign="center" fontWeight={700}>
-        Off-Road Number Generator β
+        Off-Road Number Generator γ
       </Box>
     </Typography>
     <BibsGenerator />
