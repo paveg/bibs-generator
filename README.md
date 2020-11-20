@@ -1,18 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is bibs-generator site.
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ npm install -g yarn
+$ yarn install
+
+$ yarn run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+
+## フォントを追加する
+
+1. `./public/fonts` にローカルフォントを配置してください
+2. `./src/pages/_app.tsx` の `@font-family` 内部でフォントを読み込んでください
+3. `./src/components/bibs_generator.tsx` に適切なサイズのと表示名を追加してください
 
 ## Learn More
 
