@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn run postbuild && next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "export": "next export",
     "prettier": "pretty-quick --staged",
@@ -46,6 +47,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.0",
+    "next-sitemap": "^1.3.2",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",
     "typescript": "^4.0.5"
