@@ -41,7 +41,8 @@
         "extensions": [".jsx", ".tsx"]
       }
     ],
-    "camelcase": "warn"
+    "camelcase": "warn",
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {
