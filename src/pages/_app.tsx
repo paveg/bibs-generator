@@ -46,8 +46,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const newServiceUrl: string = 'https://bibsgen.vercel.app';
+
 const App = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
+    window.location.href = newServiceUrl;
+
     const jss = document.querySelector('#jss-server-side');
     if (jss && jss.parentNode) {
       jss.parentNode.removeChild(jss);
